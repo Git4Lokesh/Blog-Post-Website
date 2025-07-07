@@ -238,8 +238,13 @@
       </p>
     </div>
 
-    <!-- Features Grid (only when no posts) -->
-    <% if(locals.posts && locals.posts.length===0){ %>
+    <!-- Features Grid (only when current user has no posts) -->
+    <% 
+      // Filter posts to only show current user's posts
+      const userPosts = locals.posts ? locals.posts.filter(post => post.owner === locals.fname) : [];
+    %>
+
+    <% if(userPosts.length === 0){ %>
       <div class="feature-grid">
         <div class="feature-card">
           <div class="feature-icon">✍️</div>
@@ -272,7 +277,7 @@
   <!-- Posts Container (when posts exist) -->
   <% if(locals.posts && locals.posts.length > 0){ %>
     <div class="posts-container">
-      <h2 style="color: #FFD700; text-align: center; margin-bottom: 2rem;">Your Posts</h2>
+      <h2 style="color: #FFD700; text-align: center; margin-bottom: 2rem;">All Posts</h2>
       <% for (let i = 0; i < posts.length; i++) { %>
         <%- include('partials/post.ejs', { index: i }) %>
       <% } %>

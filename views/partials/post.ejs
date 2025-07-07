@@ -1,11 +1,11 @@
 <div class="glass-post-card">
   <div class="d-flex justify-content-between align-items-center">
-    <span class="post-title"><%= posts[i].title %></span>
+    <span class="post-title"><%= posts[index].title %></span>
     <div class="post-actions">
       <!-- 🔥 CRITICAL: Only show buttons if user owns the post -->
-      <% if (posts[i].owner === locals.fname) { %>
-        <a href="/edit/<%= i %>" class="btn btn-sm btn-outline-light">Edit</a>
-        <form method="POST" action="/delete/<%= i %>" style="display: inline;" onsubmit="return confirm('Delete this post?')">
+      <% if (posts[index].owner === locals.fname) { %>
+        <a href="/edit/<%= index %>" class="btn btn-sm btn-outline-light">Edit</a>
+        <form method="POST" action="/delete/<%= index %>" style="display: inline;" onsubmit="return confirm('Delete this post?')">
           <button type="submit" class="btn btn-sm btn-danger" title="Delete Post">
               <i class="bi bi-trash"></i>
           </button>
@@ -14,9 +14,9 @@
     </div>
   </div>
   <div class="post-meta">
-    By <%= posts[i].author || 'Anonymous' %> • <%= posts[i].time || 'Recently' %>
+    By <%= posts[index].author || 'Anonymous' %> • <%= posts[index].time || 'Recently' %>
   </div>
   <div class="post-content mb-2">
-    <%= posts[i].content.length > 200 ? posts[i].content.substring(0, 200) + '...' : posts[i].content %>
+    <%= posts[index].content.length > 200 ? posts[index].content.substring(0, 200) + '...' : posts[index].content %>
   </div>
 </div>

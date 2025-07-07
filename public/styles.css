@@ -1,0 +1,35 @@
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(-45deg, #FFD700, #6A0DAD, #FFB347, #8B4513);
+  background-size: 400% 400%;
+  animation: royalGoldGradient 15s ease-in-out infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes royalGoldGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glassmorphism card wrapper */
+.glass-card {
+  background: rgba(30, 30, 30, 0.65); /* slightly darker for contrast */
+  border-radius: 1.2rem;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  max-width: 400px;
+  width: 100%;
+  color: #fff; /* white text for contrast */
+}

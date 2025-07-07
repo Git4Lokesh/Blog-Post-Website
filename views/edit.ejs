@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindScribe - Edit Post</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(-45deg, #FFD700, #6A0DAD, #FFB347, #8B4513);
+      background-size: 400% 400%;
+      animation: royalGoldGradient 15s ease-in-out infinite;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    @keyframes royalGoldGradient {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .glass-card-main {
+      background: rgba(30, 30, 30, 0.65);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      padding: 2.5rem 2.5rem 2rem 2.5rem;
+      max-width: 900px;
+      width: 100%;
+      margin: 3rem auto;
+    }
+    .form-control, .form-select {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      color: #fff;
+      backdrop-filter: blur(8px);
+    }
+    .form-control:focus, .form-select:focus {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #FFD700;
+      box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+      color: #fff;
+    }
+    .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .form-label {
+      color: #FFD700;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      border: none;
+      color: #000;
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+      color: #000;
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      padding: 0.75rem 2rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.5);
+      color: #fff;
+    }
+    .header-btns .btn {
+      margin-left: 0.5rem;
+    }
+    .page-title {
+      color: #FFD700;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    @media (max-width: 768px) {
+      .glass-card-main {
+        padding: 2rem 1.5rem;
+        margin: 2rem 1rem;
+      }
+      .page-title {
+        font-size: 2rem;
+      }
+      .button-group {
+        flex-direction: column;
+        align-items: center;
+      }
+      .button-group .btn {
+        width: 100%;
+        max-width: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header/Navbar -->
+  <header class="p-3 text-bg-dark w-100" style="border-radius: 0 0 1.5rem 1.5rem;">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between">
+        <a href="/home" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none fs-4 fw-bold">
+          MindScribe
+        </a>
+        <div class="header-btns d-flex align-items-center">
+          <a href="/create" class="btn btn-warning me-2">Create Post</a>
+          <a href="/home" class="btn btn-outline-light">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="glass-card-main">
+    <h1 class="page-title">Edit Post</h1>
+    
+    <form method="POST" action="/edit/<%= index %>">
+      <!-- Post Title -->
+      <div class="mb-4">
+        <label for="title" class="form-label">Post Title</label>
+        <input 
+          type="text" 
+          class="form-control form-control-lg" 
+          id="title" 
+          name="title" 
+          value="<%= post.title %>"
+          placeholder="Enter your post title..."
+          required
+        >
+      </div>
+
+      <!-- Post Content -->
+      <div class="mb-4">
+        <label for="content" class="form-label">Content</label>
+        <textarea 
+          class="form-control" 
+          id="content" 
+          name="content" 
+          rows="12" 
+          placeholder="Write your post content here..."
+          required
+        ><%= post.content %></textarea>
+      </div>
+
+
+      <!-- Action Buttons -->
+      <div class="button-group">
+        <button type="submit" class="btn btn-primary">
+          Update Post
+        </button>
+        <a href="/home" class="btn btn-secondary">
+          Cancel
+        </a>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>

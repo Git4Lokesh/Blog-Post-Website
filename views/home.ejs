@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindScribe - Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(-45deg, #FFD700, #6A0DAD, #FFB347, #8B4513);
+      background-size: 400% 400%;
+      animation: royalGoldGradient 15s ease-in-out infinite;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    @keyframes royalGoldGradient {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .glass-card-main {
+      background: rgba(30, 30, 30, 0.65);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      padding: 3rem 2.5rem;
+      max-width: 900px;
+      width: 100%;
+      margin: 3rem auto;
+      text-align: center;
+    }
+    .posts-container {
+      background: rgba(30, 30, 30, 0.65);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      padding: 2.5rem;
+      max-width: 900px;
+      width: 100%;
+      margin: 2rem auto;
+      text-align: left;
+    }
+    .hero-section {
+      margin-bottom: 3rem;
+    }
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #FFD700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: #e0c97f;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .feature-card {
+      background: rgba(255, 255, 255, 0.10);
+      border-radius: 1rem;
+      padding: 2rem 1.5rem;
+      backdrop-filter: blur(8px) saturate(180%);
+      -webkit-backdrop-filter: blur(8px) saturate(180%);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px 0 rgba(31,38,135,0.3);
+    }
+    .feature-icon {
+      font-size: 3rem;
+      color: #FFD700;
+      margin-bottom: 1rem;
+    }
+    .feature-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #FFD700;
+      margin-bottom: 1rem;
+    }
+    .feature-text {
+      color: #e0e0e0;
+      line-height: 1.5;
+    }
+    .cta-section {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 215, 0, 0.3);
+    }
+    .cta-button {
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      border: none;
+      color: #000;
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      border-radius: 0.75rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    }
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+      color: #000;
+    }
+    .header-btns .btn {
+      margin-left: 0.5rem;
+    }
+    
+    /* Post Card Styles */
+    .glass-post-card {
+      background: rgba(255, 255, 255, 0.10);
+      border-radius: 1rem;
+      box-shadow: 0 4px 16px 0 rgba(31,38,135,0.15);
+      backdrop-filter: blur(8px) saturate(180%);
+      -webkit-backdrop-filter: blur(8px) saturate(180%);
+      padding: 1.5rem 2rem 1rem 2rem;
+      margin-bottom: 2rem;
+      color: #fff;
+      transition: box-shadow 0.2s;
+    }
+    .glass-post-card:hover {
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.25);
+    }
+    .post-title {
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: #FFD700;
+    }
+    .post-meta {
+      font-size: 0.95rem;
+      color: #e0c97f;
+      margin-bottom: 1rem;
+    }
+    .post-actions .btn {
+      margin-right: 0.5rem;
+    }
+
+    /* Delete Success Popup */
+    .delete-popup {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #dc3545;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(220, 53, 69, 0.4);
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    .delete-popup.fade-out {
+      opacity: 0;
+    }
+    
+    @media (max-width: 768px) {
+      .glass-card-main, .posts-container {
+        padding: 2rem 1.5rem;
+        margin: 2rem 1rem;
+      }
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .delete-popup {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Delete Success Popup -->
+  <% if (locals.showDeleteSuccess) { %>
+    <div class="delete-popup" id="deletePopup">
+      🗑️ Post Deleted Successfully!
+    </div>
+  <% } %>
+
+  <!-- Header/Navbar -->
+  <header class="p-3 text-bg-dark w-100" style="border-radius: 0 0 1.5rem 1.5rem;">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between">
+        <!-- Logo/Home Link -->
+        <a href="/home" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none fs-4 fw-bold">
+          MindScribe
+        </a>
+        <!-- Nav/Actions -->
+        <div class="header-btns d-flex align-items-center">
+          <a href="/create" class="btn btn-warning me-2">Create Post</a>
+          <a href="/" class="btn btn-outline-light">Sign Out</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="glass-card-main">
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <%if(locals.fname){%>
+        <h1>Welcome <%= locals.fname %>! </h1>
+      <% } else{ %>
+      <h1 class="hero-title">MindScribe</h1>
+      <% } %>
+      <p class="hero-subtitle">
+        Where thoughts become stories and ideas come to life.<br>
+        Your personal sanctuary for creative expression and meaningful writing.
+      </p>
+    </div>
+
+    <!-- Features Grid (only when no posts) -->
+    <% if(locals.posts && locals.posts.length===0){ %>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">✍️</div>
+          <h3 class="feature-title">Write Freely</h3>
+          <p class="feature-text">Express your thoughts without limits. Create, edit, and publish your stories with our intuitive writing interface.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">📚</div>
+          <h3 class="feature-title">Organize & Manage</h3>
+          <p class="feature-text">Keep your posts organized and easily accessible. Edit, update, or remove content whenever inspiration strikes.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🌟</div>
+          <h3 class="feature-title">Beautiful Design</h3>
+          <p class="feature-text">Enjoy writing in a beautifully crafted environment that enhances your creative process and reading experience.</p>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="cta-section">
+        <h2 class="mb-3" style="color: #FFD700;">Ready to Start Writing?</h2>
+        <p class="mb-4" style="color: #e0c97f;">Join the community of writers and share your unique perspective with the world.</p>
+        <a href="/create" class="btn cta-button">Create Your First Post</a>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Posts Container (when posts exist) -->
+  <% if(locals.posts && locals.posts.length > 0){ %>
+    <div class="posts-container">
+      <h2 style="color: #FFD700; text-align: center; margin-bottom: 2rem;">Your Posts</h2>
+      <% for (let i = 0; i < posts.length; i++) { %>
+        <%- include('partials/post.ejs', { index: i }) %>
+      <% } %>
+    </div>
+  <% } %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  
+  <!-- Auto-hide delete popup script -->
+  <% if (locals.showDeleteSuccess) { %>
+    <script>
+      // Auto-hide the delete popup after 3 seconds
+      setTimeout(function() {
+        const popup = document.getElementById('deletePopup');
+        if (popup) {
+          popup.classList.add('fade-out');
+          // Remove the element completely after fade out
+          setTimeout(function() {
+            popup.remove();
+          }, 500);
+        }
+      }, 3000);
+    </script>
+  <% } %>
+</body>
+</html>
